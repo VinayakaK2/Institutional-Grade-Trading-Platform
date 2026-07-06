@@ -1,0 +1,19 @@
+COMMAND: python smoke_test.py
+========================================
+2026-07-05 14:44:30 [info     ] === Starting Runtime Verification (Smoke Test) ===
+2026-07-05 14:44:30 [info     ] App Name: Institutional Swing Trading Platform, Environment: development
+2026-07-05 14:44:30 [info     ] Testing Database connection...
+2026-07-05 14:44:30 [info     ] Database connection successful.
+2026-07-05 14:44:30 [info     ] Testing Redis connection...
+2026-07-05 14:44:34 [warning  ] Redis test failed (is Redis running?): Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-05 14:44:34 [info     ] Testing Event Bus initialization...
+2026-07-05 14:44:34 [info     ] Event Bus initialized.
+2026-07-05 14:44:34 [info     ] Testing Health Manager initialization...
+2026-07-05 14:44:34 [info     ] Health Manager initialized.
+2026-07-05 14:44:34 [info     ] Closing Database Engine...
+2026-07-05 14:44:34 [info     ] Closing Redis Pool...
+2026-07-05 14:44:34 [info     ] === Smoke Test Completed Successfully ===
+SMOKE TEST PASSED
+
+========================================
+EXIT_CODE: 0

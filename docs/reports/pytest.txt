@@ -1,0 +1,109 @@
+COMMAND: python -m pytest --cov=backend tests/ --cov-report=term-missing
+========================================
+============================= test session starts =============================
+platform win32 -- Python 3.8.10, pytest-8.3.5, pluggy-1.5.0
+rootdir: H:\Swing Trade Bot
+configfile: pytest.ini
+plugins: asyncio-0.24.0, cov-5.0.0, anyio-4.5.2
+asyncio: mode=strict, default_loop_scope=None
+collected 65 items
+
+tests\integration\application\test_di.py ....                            [  6%]
+tests\integration\application\test_repository.py ..                      [  9%]
+tests\integration\application\test_uow.py ..                             [ 12%]
+tests\integration\database\test_models.py ...                            [ 16%]
+tests\integration\database\test_transaction.py ..                        [ 20%]
+tests\integration\infrastructure\test_cache.py ..                        [ 23%]
+tests\integration\infrastructure\test_config.py .                        [ 24%]
+tests\integration\infrastructure\test_event_bus.py ..                    [ 27%]
+tests\integration\infrastructure\test_health.py .                        [ 29%]
+tests\integration\infrastructure\test_metrics.py .                       [ 30%]
+tests\integration\infrastructure\test_resilience.py ..                   [ 33%]
+tests\integration\infrastructure\test_serialization.py ...               [ 38%]
+tests\integration\market_calendar\test_time_service.py ....              [ 44%]
+tests\integration\market_calendar\test_timezone.py ....                  [ 50%]
+tests\integration\market_data\test_provider_manager.py ....              [ 56%]
+tests\integration\market_data\test_service.py .                          [ 58%]
+tests\unit\core\test_core_config.py ..                                   [ 61%]
+tests\unit\core\test_logger.py ...                                       [ 66%]
+tests\unit\core\test_observability.py ....                               [ 72%]
+tests\unit\infrastructure\test_redis_cache.py .......                    [ 83%]
+tests\unit\infrastructure\test_service_access.py ..                      [ 86%]
+tests\unit\infrastructure\test_transaction_errors.py ....                [ 92%]
+tests\unit\utils\test_serialization_errors.py .....                      [100%]
+
+---------- coverage: platform win32, python 3.8.10-final-0 -----------
+Name                                                   Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------
+backend\application\di\container.py                       61      4    93%   83, 90-94
+backend\application\di\exceptions.py                      14      0   100%
+backend\application\repository\base.py                    18      7    61%   16, 20, 24, 28, 32, 36, 40
+backend\application\repository\sqlalchemy.py              41      3    93%   27-28, 39
+backend\application\uow\base.py                           13      5    62%   13, 16, 20, 24, 28
+backend\application\uow\sqlalchemy.py                     47     11    77%   47-54, 60-61, 65
+backend\core\__init__.py                                   0      0   100%
+backend\core\config.py                                    11      0   100%
+backend\core\exceptions.py                                28      6    79%   26, 40, 51, 73, 84, 95
+backend\core\logger.py                                    27      1    96%   59
+backend\core\observability.py                             33      2    94%   45-46
+backend\domain\shared\primitives.py                       47      2    96%   62, 66
+backend\infrastructure\cache\keys.py                       4      0   100%
+backend\infrastructure\cache\manager.py                   22      0   100%
+backend\infrastructure\cache\provider.py                   8      3    62%   10, 13, 16
+backend\infrastructure\config\manager.py                  20      3    85%   31-33
+backend\infrastructure\config\settings.py                 12      0   100%
+backend\infrastructure\database\config.py                 19      1    95%   33
+backend\infrastructure\database\exceptions.py             21      6    71%   11-12, 35-38
+backend\infrastructure\database\orm\base.py                6      0   100%
+backend\infrastructure\database\orm\mixins.py             20      0   100%
+backend\infrastructure\database\orm\models.py             24      2    92%   34, 36
+backend\infrastructure\database\session.py                18      5    72%   26, 53-57
+backend\infrastructure\database\utils\transaction.py      40      3    92%   39, 51, 60
+backend\infrastructure\event_bus\bus.py                   34      2    94%   41-42
+backend\infrastructure\event_bus\exceptions.py            10      2    80%   16-17
+backend\infrastructure\event_bus\models.py                16      1    94%   33
+backend\infrastructure\event_bus\publisher.py              6      0   100%
+backend\infrastructure\event_bus\subscriber.py             5      1    80%   15
+backend\infrastructure\health\checks.py                    7      2    71%   12, 19
+backend\infrastructure\health\manager.py                  29      4    86%   33, 41-44
+backend\infrastructure\metrics\instruments.py             50      6    88%   65-66, 69-70, 73-74
+backend\infrastructure\metrics\registry.py                28      0   100%
+backend\infrastructure\redis\cache.py                     41      0   100%
+backend\infrastructure\redis\client.py                     6      1    83%   24
+backend\infrastructure\redis\config.py                    10      0   100%
+backend\infrastructure\redis\exceptions.py                10      2    80%   11-12
+backend\infrastructure\resilience\circuit_breaker.py      56      6    89%   48-51, 72-73
+backend\infrastructure\resilience\retry.py                26      2    92%   33-34
+backend\infrastructure\utils\serialization.py             47      4    91%   61, 66-68
+backend\market_calendar\config\__init__.py                 0      0   100%
+backend\market_calendar\config\settings.py                 7      0   100%
+backend\market_calendar\exceptions.py                     18      4    78%   16-17, 28-29
+backend\market_calendar\models\session.py                 20      0   100%
+backend\market_calendar\provider\interface.py             14      4    71%   15, 20, 24, 28
+backend\market_calendar\provider\manager.py               23      5    78%   27-28, 38-40
+backend\market_calendar\provider\registry.py              13      0   100%
+backend\market_calendar\provider\static_provider.py       28      4    86%   29, 61-68
+backend\market_calendar\service\time_service.py           53      2    96%   69, 80
+backend\market_calendar\utils\__init__.py                  0      0   100%
+backend\market_calendar\utils\timezone.py                 32      2    94%   29, 48
+backend\market_data\config\settings.py                     9      0   100%
+backend\market_data\exceptions.py                         26      8    69%   16-17, 28-29, 34-35, 40-41
+backend\market_data\models\candle.py                      25      4    84%   28, 32, 36, 40
+backend\market_data\models\symbol.py                       9      0   100%
+backend\market_data\models\timeframe.py                   16      2    88%   22-35
+backend\market_data\provider\interface.py                 16      4    75%   19, 24, 33, 43
+backend\market_data\provider\manager.py                   37      0   100%
+backend\market_data\provider\registry.py                  15      1    93%   26
+backend\market_data\service\access.py                     39      3    92%   74-75, 78
+------------------------------------------------------------------------------------
+TOTAL                                                   1335    140    90%
+
+
+============================= 65 passed in 4.08s ==============================
+C:\Users\Vinayaka K\AppData\Roaming\Python\Python38\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+
+========================================
+EXIT_CODE: 0
