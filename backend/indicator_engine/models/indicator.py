@@ -17,6 +17,11 @@ class IndicatorType(str, Enum):
     DI_MINUS = "di_minus"
     ATR = "atr"
     VOL_SMA = "vol_sma"
+    VWAP = "vwap"
+    BOLLINGER_BANDS = "bollinger_bands"
+    SUPERTREND = "supertrend"
+    OBV = "obv"
+    CMF = "cmf"
 
 class IndicatorResult(BaseModel):
     """
@@ -34,6 +39,8 @@ class IndicatorResult(BaseModel):
     parameters: Dict[str, Any]
     
     value: float
+    outputs: Optional[Dict[str, float]] = None
+    metadata: Optional[Dict[str, Any]] = None
     internal_state: Optional[Dict[str, Any]] = None
     
     def get_param_key(self) -> str:
