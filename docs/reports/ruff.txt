@@ -1,6 +1,551 @@
 COMMAND: python -m ruff check backend/ tests/
 ========================================
-All checks passed!
+F401 [*] `backend.market_data.models.candle.Candle` imported but unused
+ --> backend\historical_data\engine\pipeline.py:8:47
+  |
+6 | from backend.historical_data.contracts.storage import HistoricalStorageContract
+7 | from backend.historical_data.models.raw import RawCandle
+8 | from backend.market_data.models.candle import Candle
+  |                                               ^^^^^^
+9 | from backend.historical_data.engine.normalizer import DataNormalizer
+  |
+help: Remove unused import: `backend.market_data.models.candle.Candle`
+
+F401 [*] `backend.historical_data.engine.normalizer.DataNormalizer` imported but unused
+  --> backend\historical_data\engine\pipeline.py:9:55
+   |
+ 7 | from backend.historical_data.models.raw import RawCandle
+ 8 | from backend.market_data.models.candle import Candle
+ 9 | from backend.historical_data.engine.normalizer import DataNormalizer
+   |                                                       ^^^^^^^^^^^^^^
+10 |
+11 | logger = logging.getLogger(__name__)
+   |
+help: Remove unused import: `backend.historical_data.engine.normalizer.DataNormalizer`
+
+F401 [*] `sqlalchemy.Float` imported but unused
+ --> backend\historical_data\orm\models.py:5:32
+  |
+3 | """
+4 | from sqlalchemy.orm import Mapped, mapped_column, declared_attr
+5 | from sqlalchemy import String, Float, DateTime, Boolean, UniqueConstraint, JSON
+  |                                ^^^^^
+6 | from datetime import datetime
+  |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.Boolean` imported but unused
+ --> backend\historical_data\orm\models.py:5:49
+  |
+3 | """
+4 | from sqlalchemy.orm import Mapped, mapped_column, declared_attr
+5 | from sqlalchemy import String, Float, DateTime, Boolean, UniqueConstraint, JSON
+  |                                                 ^^^^^^^
+6 | from datetime import datetime
+  |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.UniqueConstraint` imported but unused
+ --> backend\historical_data\orm\models.py:5:58
+  |
+3 | """
+4 | from sqlalchemy.orm import Mapped, mapped_column, declared_attr
+5 | from sqlalchemy import String, Float, DateTime, Boolean, UniqueConstraint, JSON
+  |                                                          ^^^^^^^^^^^^^^^^
+6 | from datetime import datetime
+  |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.JSON` imported but unused
+ --> backend\historical_data\orm\models.py:5:76
+  |
+3 | """
+4 | from sqlalchemy.orm import Mapped, mapped_column, declared_attr
+5 | from sqlalchemy import String, Float, DateTime, Boolean, UniqueConstraint, JSON
+  |                                                                            ^^^^
+6 | from datetime import datetime
+  |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.Integer` imported but unused
+ --> backend\infrastructure\database\orm\indicator.py:1:47
+  |
+1 | from sqlalchemy import Column, String, Float, Integer, ForeignKey, JSON
+  |                                               ^^^^^^^
+2 | from sqlalchemy.orm import relationship
+3 | from backend.infrastructure.database.orm.base import Base
+  |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.ForeignKey` imported but unused
+ --> backend\infrastructure\database\orm\indicator.py:1:56
+  |
+1 | from sqlalchemy import Column, String, Float, Integer, ForeignKey, JSON
+  |                                                        ^^^^^^^^^^
+2 | from sqlalchemy.orm import relationship
+3 | from backend.infrastructure.database.orm.base import Base
+  |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.orm.relationship` imported but unused
+ --> backend\infrastructure\database\orm\indicator.py:2:28
+  |
+1 | from sqlalchemy import Column, String, Float, Integer, ForeignKey, JSON
+2 | from sqlalchemy.orm import relationship
+  |                            ^^^^^^^^^^^^
+3 | from backend.infrastructure.database.orm.base import Base
+  |
+help: Remove unused import: `sqlalchemy.orm.relationship`
+
+F401 [*] `sqlalchemy.Float` imported but unused
+ --> backend\infrastructure\database\orm\market_structure.py:2:32
+  |
+1 | from datetime import datetime
+2 | from sqlalchemy import String, Float, DateTime, JSON, Index
+  |                                ^^^^^
+3 | from sqlalchemy.orm import Mapped, mapped_column
+4 | from backend.infrastructure.database.orm.base import Base
+  |
+help: Remove unused import: `sqlalchemy.Float`
+
+F401 [*] `asyncio` imported but unused
+ --> tests\integration\data_validation\test_certification_advanced.py:2:8
+  |
+1 | import pytest
+2 | import asyncio
+  |        ^^^^^^^
+3 | from unittest.mock import patch, MagicMock
+4 | from sqlalchemy import text
+  |
+help: Remove unused import: `asyncio`
+
+F401 [*] `unittest.mock.MagicMock` imported but unused
+ --> tests\integration\data_validation\test_certification_advanced.py:3:34
+  |
+1 | import pytest
+2 | import asyncio
+3 | from unittest.mock import patch, MagicMock
+  |                                  ^^^^^^^^^
+4 | from sqlalchemy import text
+5 | from backend.historical_data.models.raw import RawCandle
+  |
+help: Remove unused import: `unittest.mock.MagicMock`
+
+F401 [*] `asyncio` imported but unused
+ --> tests\integration\data_validation\test_certification_integration.py:2:8
+  |
+1 | import pytest
+2 | import asyncio
+  |        ^^^^^^^
+3 | from datetime import datetime, date
+4 | from backend.historical_data.models.raw import RawCandle
+  |
+help: Remove unused import: `asyncio`
+
+F401 [*] `datetime.datetime` imported but unused
+ --> tests\integration\data_validation\test_certification_integration.py:3:22
+  |
+1 | import pytest
+2 | import asyncio
+3 | from datetime import datetime, date
+  |                      ^^^^^^^^
+4 | from backend.historical_data.models.raw import RawCandle
+5 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+  |
+help: Remove unused import
+
+F401 [*] `datetime.date` imported but unused
+ --> tests\integration\data_validation\test_certification_integration.py:3:32
+  |
+1 | import pytest
+2 | import asyncio
+3 | from datetime import datetime, date
+  |                                ^^^^
+4 | from backend.historical_data.models.raw import RawCandle
+5 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+  |
+help: Remove unused import
+
+F401 [*] `asyncio` imported but unused
+ --> tests\integration\data_validation\test_certification_scalability.py:2:8
+  |
+1 | import pytest
+2 | import asyncio
+  |        ^^^^^^^
+3 | import time
+4 | import tracemalloc
+  |
+help: Remove unused import: `asyncio`
+
+F401 [*] `backend.historical_data.storage.postgres.PostgreSQLHistoricalStorage` imported but unused
+  --> tests\integration\data_validation\test_certification_scalability.py:17:54
+   |
+15 | from backend.data_validation.cleaning.rules.basic import DuplicateRemovalRule, WhitespaceCleanupRule
+16 | from backend.data_validation.contracts.rule import ValidationContext
+17 | from backend.historical_data.storage.postgres import PostgreSQLHistoricalStorage
+   |                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+18 | from backend.data_validation.infrastructure.storage import PostgreSQLQuarantineStorage
+19 | from backend.application.uow.sqlalchemy import SqlAlchemyUnitOfWork
+   |
+help: Remove unused import: `backend.historical_data.storage.postgres.PostgreSQLHistoricalStorage`
+
+F401 [*] `backend.data_validation.infrastructure.storage.PostgreSQLQuarantineStorage` imported but unused
+  --> tests\integration\data_validation\test_certification_scalability.py:18:60
+   |
+16 | from backend.data_validation.contracts.rule import ValidationContext
+17 | from backend.historical_data.storage.postgres import PostgreSQLHistoricalStorage
+18 | from backend.data_validation.infrastructure.storage import PostgreSQLQuarantineStorage
+   |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+19 | from backend.application.uow.sqlalchemy import SqlAlchemyUnitOfWork
+   |
+help: Remove unused import: `backend.data_validation.infrastructure.storage.PostgreSQLQuarantineStorage`
+
+F401 [*] `sqlalchemy.select` imported but unused
+  --> tests\integration\historical_data\test_storage.py:10:24
+   |
+ 8 | from backend.historical_data.orm.models import RawCandleOrm, CandleOrm
+ 9 | from backend.historical_data.engine.normalizer import DataNormalizer
+10 | from sqlalchemy import select, func, text
+   |                        ^^^^^^
+11 |
+12 | @pytest.fixture
+   |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.func` imported but unused
+  --> tests\integration\historical_data\test_storage.py:10:32
+   |
+ 8 | from backend.historical_data.orm.models import RawCandleOrm, CandleOrm
+ 9 | from backend.historical_data.engine.normalizer import DataNormalizer
+10 | from sqlalchemy import select, func, text
+   |                                ^^^^
+11 |
+12 | @pytest.fixture
+   |
+help: Remove unused import
+
+F401 [*] `sqlalchemy.text` imported but unused
+  --> tests\integration\historical_data\test_storage.py:10:38
+   |
+ 8 | from backend.historical_data.orm.models import RawCandleOrm, CandleOrm
+ 9 | from backend.historical_data.engine.normalizer import DataNormalizer
+10 | from sqlalchemy import select, func, text
+   |                                      ^^^^
+11 |
+12 | @pytest.fixture
+   |
+help: Remove unused import
+
+F811 [*] Redefinition of unused `select` from line 10
+  --> tests\integration\historical_data\test_storage.py:54:28
+   |
+53 |     # Verify
+54 |     from sqlalchemy import select, func
+   |                            ^^^^^^ `select` redefined here
+55 |     res = await db_session.execute(select(func.count(RawCandleOrm.id)))
+56 |     count = res.scalar()
+   |
+  ::: tests\integration\historical_data\test_storage.py:10:24
+   |
+ 8 | from backend.historical_data.orm.models import RawCandleOrm, CandleOrm
+ 9 | from backend.historical_data.engine.normalizer import DataNormalizer
+10 | from sqlalchemy import select, func, text
+   |                        ------ previous definition of `select` here
+11 |
+12 | @pytest.fixture
+   |
+help: Remove definition: `select`
+
+F811 [*] Redefinition of unused `func` from line 10
+  --> tests\integration\historical_data\test_storage.py:54:36
+   |
+53 |     # Verify
+54 |     from sqlalchemy import select, func
+   |                                    ^^^^ `func` redefined here
+55 |     res = await db_session.execute(select(func.count(RawCandleOrm.id)))
+56 |     count = res.scalar()
+   |
+  ::: tests\integration\historical_data\test_storage.py:10:32
+   |
+ 8 | from backend.historical_data.orm.models import RawCandleOrm, CandleOrm
+ 9 | from backend.historical_data.engine.normalizer import DataNormalizer
+10 | from sqlalchemy import select, func, text
+   |                                ---- previous definition of `func` here
+11 |
+12 | @pytest.fixture
+   |
+help: Remove definition: `func`
+
+F811 [*] Redefinition of unused `select` from line 10
+   --> tests\integration\historical_data\test_storage.py:125:28
+    |
+124 |     from backend.historical_data.orm.models import DownloadMetadataOrm
+125 |     from sqlalchemy import select
+    |                            ^^^^^^ `select` redefined here
+126 |     
+127 |     stmt = select(DownloadMetadataOrm).where(DownloadMetadataOrm.request_id == "test_req_123")
+    |
+   ::: tests\integration\historical_data\test_storage.py:10:24
+    |
+  8 | from backend.historical_data.orm.models import RawCandleOrm, CandleOrm
+  9 | from backend.historical_data.engine.normalizer import DataNormalizer
+ 10 | from sqlalchemy import select, func, text
+    |                        ------ previous definition of `select` here
+ 11 |
+ 12 | @pytest.fixture
+    |
+help: Remove definition: `select`
+
+F401 [*] `asyncio` imported but unused
+ --> tests\integration\indicator_engine\test_pipeline.py:2:8
+  |
+1 | import pytest
+2 | import asyncio
+  |        ^^^^^^^
+3 | from datetime import datetime, timedelta
+4 | from typing import AsyncGenerator
+  |
+help: Remove unused import: `asyncio`
+
+F401 [*] `asyncio` imported but unused
+ --> tests\integration\indicator_engine\test_repository.py:2:8
+  |
+1 | import pytest
+2 | import asyncio
+  |        ^^^^^^^
+3 | from datetime import datetime
+4 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+  |
+help: Remove unused import: `asyncio`
+
+F841 Local variable `config` is assigned to but never used
+  --> tests\integration\volume_analysis_engine\test_pipeline_integration.py:51:5
+   |
+50 |     # We set minimum_history to a small number for testing
+51 |     config = VolumeAnalysisConfig(
+   |     ^^^^^^
+52 |         avg_volume_type=AverageVolumeType.SMA,
+53 |         avg_volume_period=2,
+   |
+help: Remove assignment to unused variable `config`
+
+F841 Local variable `candles` is assigned to but never used
+  --> tests\integration\volume_analysis_engine\test_pipeline_integration.py:79:5
+   |
+77 |     # let's just make it simple:
+78 |     
+79 |     candles = [
+   |     ^^^^^^^
+80 |         create_candle(ts, 100),
+81 |         create_candle(ts + timedelta(days=1), 100), # avg 100, rvol 1
+   |
+help: Remove assignment to unused variable `candles`
+
+F401 [*] `backend.corporate_actions.adjustment.calculators.BonusAdjustment` imported but unused
+ --> tests\unit\corporate_actions\test_calculators.py:8:46
+  |
+6 | from backend.corporate_actions.models.action import CorporateAction, ActionType
+7 | from backend.corporate_actions.adjustment.calculators import (
+8 |     SplitAdjustment, ReverseSplitAdjustment, BonusAdjustment, DividendAdjustment
+  |                                              ^^^^^^^^^^^^^^^
+9 | )
+  |
+help: Remove unused import: `backend.corporate_actions.adjustment.calculators.BonusAdjustment`
+
+F401 [*] `datetime.datetime` imported but unused
+ --> tests\unit\corporate_actions\test_validation.py:2:22
+  |
+1 | import pytest
+2 | from datetime import datetime, timedelta, date
+  |                      ^^^^^^^^
+3 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+4 | from backend.corporate_actions.models.action import CorporateAction, ActionType
+  |
+help: Remove unused import: `datetime.datetime`
+
+E712 Avoid equality comparisons to `True`; use `uow._session.executed:` for truth checks
+  --> tests\unit\data_validation\test_infrastructure_storage.py:39:12
+   |
+37 |     ]
+38 |     await storage.save_quarantined_candles(candles, "Failed Validation")
+39 |     assert uow._session.executed == True
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+40 |
+41 | @pytest.mark.asyncio
+   |
+help: Replace with `uow._session.executed`
+
+F401 [*] `pytest` imported but unused
+ --> tests\unit\data_validation\test_models.py:1:8
+  |
+1 | import pytest
+  |        ^^^^^^
+2 | from backend.data_validation.models.state import DataState
+  |
+help: Remove unused import: `pytest`
+
+E402 Module level import not at top of file
+  --> tests\unit\historical_data\test_edge_cases.py:19:1
+   |
+17 |         DataNormalizer.normalize(raw)
+18 |
+19 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+20 |
+21 | @pytest.fixture
+   |
+
+F401 [*] `backend.historical_data.models.raw.RawCandle` imported but unused
+  --> tests\unit\historical_data\test_empty.py:12:52
+   |
+10 | def test_pipeline_empty():
+11 |     from backend.historical_data.engine.pipeline import DownloadPipeline
+12 |     from backend.historical_data.models.raw import RawCandle
+   |                                                    ^^^^^^^^^
+13 |     
+14 |     class DummyStorage:
+   |
+help: Remove unused import: `backend.historical_data.models.raw.RawCandle`
+
+F841 Local variable `pipeline` is assigned to but never used
+  --> tests\unit\historical_data\test_empty.py:17:5
+   |
+15 |         pass
+16 |         
+17 |     pipeline = DownloadPipeline(DummyStorage())
+   |     ^^^^^^^^
+18 |     # we don't need to await because it returns immediately? Wait, they are async.
+   |
+help: Remove assignment to unused variable `pipeline`
+
+F401 [*] `backend.historical_data.models.metadata.DownloadStatus` imported but unused
+ --> tests\unit\historical_data\test_postgres_exceptions.py:4:71
+  |
+2 | from backend.historical_data.storage.postgres import PostgreSQLHistoricalStorage
+3 | from backend.historical_data.exceptions import StorageException
+4 | from backend.historical_data.models.metadata import DownloadMetadata, DownloadStatus
+  |                                                                       ^^^^^^^^^^^^^^
+5 | from backend.historical_data.models.raw import RawCandle
+6 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+  |
+help: Remove unused import: `backend.historical_data.models.metadata.DownloadStatus`
+
+F401 [*] `asyncio` imported but unused
+ --> tests\unit\historical_data\test_service.py:2:8
+  |
+1 | import pytest
+2 | import asyncio
+  |        ^^^^^^^
+3 | from datetime import datetime
+4 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+  |
+help: Remove unused import: `asyncio`
+
+E701 Multiple statements on one line (colon)
+  --> tests\unit\historical_data\test_service.py:15:17
+   |
+13 |     async def save_normalized_candles(self, candles): pass
+14 |     async def get_raw_candles(self, symbol, timeframe, start, end):
+15 |         if False: yield None
+   |                 ^
+16 |     async def save_metadata(self, metadata): pass
+   |
+
+E741 Ambiguous variable name: `l`
+  --> tests\unit\indicator_engine\test_advanced_calculators.py:32:19
+   |
+31 |     candles = []
+32 |     for i, (o, h, l, c, v) in enumerate(prices):
+   |                   ^
+33 |         candles.append(
+34 |             Candle(
+   |
+
+F401 [*] `pytest` imported but unused
+ --> tests\unit\indicator_engine\test_calculators.py:1:8
+  |
+1 | import pytest
+  |        ^^^^^^
+2 | from datetime import datetime
+3 | from backend.market_data.models.candle import Candle
+  |
+help: Remove unused import: `pytest`
+
+F401 [*] `pytest` imported but unused
+ --> tests\unit\market_structure_engine\test_event_detector.py:1:8
+  |
+1 | import pytest
+  |        ^^^^^^
+2 | import uuid
+3 | from datetime import datetime, timezone
+  |
+help: Remove unused import: `pytest`
+
+F401 [*] `pytest` imported but unused
+ --> tests\unit\support_resistance_engine\test_lifecycle.py:1:8
+  |
+1 | import pytest
+  |        ^^^^^^
+2 | import uuid
+3 | from datetime import datetime, timezone, timedelta
+  |
+help: Remove unused import: `pytest`
+
+E712 Avoid equality comparisons to `True`; use `zones[0].is_active:` for truth checks
+  --> tests\unit\support_resistance_engine\test_lifecycle.py:65:12
+   |
+64 |     assert len(zones) == 1
+65 |     assert zones[0].is_active == True
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+66 |     assert zones[0].strength.touch_count == 1
+67 |     assert zones[0].strength.rejection_count == 1
+   |
+help: Replace with `zones[0].is_active`
+
+E712 Avoid equality comparisons to `False`; use `not zones[0].is_active:` for false checks
+  --> tests\unit\support_resistance_engine\test_lifecycle.py:74:12
+   |
+72 |     zones = manager.update_zones([zone], [c3])
+73 |     
+74 |     assert zones[0].is_active == False
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+75 |     assert zones[0].strength.touch_count == 2
+76 |     assert zones[0].strength.rejection_count == 1  # Not incremented because it broke
+   |
+help: Replace with `not zones[0].is_active`
+
+F401 [*] `pytest` imported but unused
+ --> tests\unit\support_resistance_engine\test_zone_generator.py:1:8
+  |
+1 | import pytest
+  |        ^^^^^^
+2 | from datetime import datetime, timezone
+3 | from backend.support_resistance_engine.engine.zone_generator import ZoneGenerator
+  |
+help: Remove unused import: `pytest`
+
+F401 [*] `pytest` imported but unused
+ --> tests\unit\volume_analysis_engine\test_engine.py:1:8
+  |
+1 | import pytest
+  |        ^^^^^^
+2 | from datetime import datetime, timezone, timedelta
+3 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+  |
+help: Remove unused import: `pytest`
+
+F401 [*] `pytest` imported but unused
+ --> tests\unit\volume_analysis_engine\test_event_detector.py:1:8
+  |
+1 | import pytest
+  |        ^^^^^^
+2 | from datetime import datetime, timezone, timedelta
+3 | from backend.market_data.models.symbol import SymbolReference, ExchangeReference
+  |
+help: Remove unused import: `pytest`
+
+Found 47 errors.
+[*] 38 fixable with the `--fix` option (6 hidden fixes can be enabled with the `--unsafe-fixes` option).
 
 ========================================
-EXIT_CODE: 0
+EXIT_CODE: 1

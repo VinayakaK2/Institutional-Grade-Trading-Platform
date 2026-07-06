@@ -78,8 +78,10 @@ class IndicatorCalculationPipeline:
             pass
 
         # 2. Validation & 3. Calculation
-        # Validation is handled inside calculate_all
-        results = self._engine.calculate_all(candles, dataset_version, previous_states=previous_states)
+        if hasattr(self._engine, "calculate_all_async"):
+            results = await self._engine.calculate_all_async(candles, dataset_version)
+        else:
+            results = self._engine.calculate_all(candles, dataset_version, previous_states=previous_states)
         
         if not results:
             return []

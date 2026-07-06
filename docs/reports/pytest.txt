@@ -6,104 +6,342 @@ rootdir: H:\Swing Trade Bot
 configfile: pytest.ini
 plugins: asyncio-0.24.0, cov-5.0.0, anyio-4.5.2
 asyncio: mode=strict, default_loop_scope=None
-collected 65 items
+collected 167 items / 11 errors
 
-tests\integration\application\test_di.py ....                            [  6%]
-tests\integration\application\test_repository.py ..                      [  9%]
-tests\integration\application\test_uow.py ..                             [ 12%]
-tests\integration\database\test_models.py ...                            [ 16%]
-tests\integration\database\test_transaction.py ..                        [ 20%]
-tests\integration\infrastructure\test_cache.py ..                        [ 23%]
-tests\integration\infrastructure\test_config.py .                        [ 24%]
-tests\integration\infrastructure\test_event_bus.py ..                    [ 27%]
-tests\integration\infrastructure\test_health.py .                        [ 29%]
-tests\integration\infrastructure\test_metrics.py .                       [ 30%]
-tests\integration\infrastructure\test_resilience.py ..                   [ 33%]
-tests\integration\infrastructure\test_serialization.py ...               [ 38%]
-tests\integration\market_calendar\test_time_service.py ....              [ 44%]
-tests\integration\market_calendar\test_timezone.py ....                  [ 50%]
-tests\integration\market_data\test_provider_manager.py ....              [ 56%]
-tests\integration\market_data\test_service.py .                          [ 58%]
-tests\unit\core\test_core_config.py ..                                   [ 61%]
-tests\unit\core\test_logger.py ...                                       [ 66%]
-tests\unit\core\test_observability.py ....                               [ 72%]
-tests\unit\infrastructure\test_redis_cache.py .......                    [ 83%]
-tests\unit\infrastructure\test_service_access.py ..                      [ 86%]
-tests\unit\infrastructure\test_transaction_errors.py ....                [ 92%]
-tests\unit\utils\test_serialization_errors.py .....                      [100%]
+=================================== ERRORS ====================================
+____ ERROR collecting tests/integration/candle_storage/test_repository.py _____
+import file mismatch:
+imported module 'test_repository' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\application\test_repository.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\integration\candle_storage\test_repository.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+_____ ERROR collecting tests/integration/historical_data/test_storage.py ______
+ImportError while importing test module 'H:\Swing Trade Bot\tests\integration\historical_data\test_storage.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Program Files\Python38\lib\importlib\__init__.py:127: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests\integration\historical_data\test_storage.py:8: in <module>
+    from backend.historical_data.orm.models import RawCandleOrm, CandleOrm
+E   ImportError: cannot import name 'RawCandleOrm' from 'backend.historical_data.orm.models' (H:\Swing Trade Bot\backend\historical_data\orm\models.py)
+____ ERROR collecting tests/integration/indicator_engine/test_pipeline.py _____
+import file mismatch:
+imported module 'test_pipeline' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\corporate_actions\test_pipeline.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\integration\indicator_engine\test_pipeline.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+___ ERROR collecting tests/integration/indicator_engine/test_repository.py ____
+import file mismatch:
+imported module 'test_repository' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\application\test_repository.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\integration\indicator_engine\test_repository.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+__________ ERROR collecting tests/unit/candle_storage/test_engine.py __________
+import file mismatch:
+imported module 'test_engine' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\market_structure_engine\test_engine.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\unit\candle_storage\test_engine.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+_________ ERROR collecting tests/unit/historical_data/test_engine.py __________
+import file mismatch:
+imported module 'test_engine' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\market_structure_engine\test_engine.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\unit\historical_data\test_engine.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+_________ ERROR collecting tests/unit/historical_data/test_service.py _________
+import file mismatch:
+imported module 'test_service' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\market_data\test_service.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\unit\historical_data\test_service.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+______ ERROR collecting tests/unit/indicator_engine/test_calculators.py _______
+import file mismatch:
+imported module 'test_calculators' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\unit\corporate_actions\test_calculators.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\unit\indicator_engine\test_calculators.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+_________ ERROR collecting tests/unit/indicator_engine/test_engine.py _________
+import file mismatch:
+imported module 'test_engine' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\market_structure_engine\test_engine.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\unit\indicator_engine\test_engine.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+______ ERROR collecting tests/unit/volume_analysis_engine/test_engine.py ______
+import file mismatch:
+imported module 'test_engine' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\integration\market_structure_engine\test_engine.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\unit\volume_analysis_engine\test_engine.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+__ ERROR collecting tests/unit/volume_analysis_engine/test_event_detector.py __
+import file mismatch:
+imported module 'test_event_detector' has this __file__ attribute:
+  H:\Swing Trade Bot\tests\unit\market_structure_engine\test_event_detector.py
+which is not the same as the test file we want to collect:
+  H:\Swing Trade Bot\tests\unit\volume_analysis_engine\test_event_detector.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
 
 ---------- coverage: platform win32, python 3.8.10-final-0 -----------
-Name                                                   Stmts   Miss  Cover   Missing
-------------------------------------------------------------------------------------
-backend\application\di\container.py                       61      4    93%   83, 90-94
-backend\application\di\exceptions.py                      14      0   100%
-backend\application\repository\base.py                    18      7    61%   16, 20, 24, 28, 32, 36, 40
-backend\application\repository\sqlalchemy.py              41      3    93%   27-28, 39
-backend\application\uow\base.py                           13      5    62%   13, 16, 20, 24, 28
-backend\application\uow\sqlalchemy.py                     47     11    77%   47-54, 60-61, 65
-backend\core\__init__.py                                   0      0   100%
-backend\core\config.py                                    11      0   100%
-backend\core\exceptions.py                                28      6    79%   26, 40, 51, 73, 84, 95
-backend\core\logger.py                                    27      1    96%   59
-backend\core\observability.py                             33      2    94%   45-46
-backend\domain\shared\primitives.py                       47      2    96%   62, 66
-backend\infrastructure\cache\keys.py                       4      0   100%
-backend\infrastructure\cache\manager.py                   22      0   100%
-backend\infrastructure\cache\provider.py                   8      3    62%   10, 13, 16
-backend\infrastructure\config\manager.py                  20      3    85%   31-33
-backend\infrastructure\config\settings.py                 12      0   100%
-backend\infrastructure\database\config.py                 19      1    95%   33
-backend\infrastructure\database\exceptions.py             21      6    71%   11-12, 35-38
-backend\infrastructure\database\orm\base.py                6      0   100%
-backend\infrastructure\database\orm\mixins.py             20      0   100%
-backend\infrastructure\database\orm\models.py             24      2    92%   34, 36
-backend\infrastructure\database\session.py                18      5    72%   26, 53-57
-backend\infrastructure\database\utils\transaction.py      40      3    92%   39, 51, 60
-backend\infrastructure\event_bus\bus.py                   34      2    94%   41-42
-backend\infrastructure\event_bus\exceptions.py            10      2    80%   16-17
-backend\infrastructure\event_bus\models.py                16      1    94%   33
-backend\infrastructure\event_bus\publisher.py              6      0   100%
-backend\infrastructure\event_bus\subscriber.py             5      1    80%   15
-backend\infrastructure\health\checks.py                    7      2    71%   12, 19
-backend\infrastructure\health\manager.py                  29      4    86%   33, 41-44
-backend\infrastructure\metrics\instruments.py             50      6    88%   65-66, 69-70, 73-74
-backend\infrastructure\metrics\registry.py                28      0   100%
-backend\infrastructure\redis\cache.py                     41      0   100%
-backend\infrastructure\redis\client.py                     6      1    83%   24
-backend\infrastructure\redis\config.py                    10      0   100%
-backend\infrastructure\redis\exceptions.py                10      2    80%   11-12
-backend\infrastructure\resilience\circuit_breaker.py      56      6    89%   48-51, 72-73
-backend\infrastructure\resilience\retry.py                26      2    92%   33-34
-backend\infrastructure\utils\serialization.py             47      4    91%   61, 66-68
-backend\market_calendar\config\__init__.py                 0      0   100%
-backend\market_calendar\config\settings.py                 7      0   100%
-backend\market_calendar\exceptions.py                     18      4    78%   16-17, 28-29
-backend\market_calendar\models\session.py                 20      0   100%
-backend\market_calendar\provider\interface.py             14      4    71%   15, 20, 24, 28
-backend\market_calendar\provider\manager.py               23      5    78%   27-28, 38-40
-backend\market_calendar\provider\registry.py              13      0   100%
-backend\market_calendar\provider\static_provider.py       28      4    86%   29, 61-68
-backend\market_calendar\service\time_service.py           53      2    96%   69, 80
-backend\market_calendar\utils\__init__.py                  0      0   100%
-backend\market_calendar\utils\timezone.py                 32      2    94%   29, 48
-backend\market_data\config\settings.py                     9      0   100%
-backend\market_data\exceptions.py                         26      8    69%   16-17, 28-29, 34-35, 40-41
-backend\market_data\models\candle.py                      25      4    84%   28, 32, 36, 40
-backend\market_data\models\symbol.py                       9      0   100%
-backend\market_data\models\timeframe.py                   16      2    88%   22-35
-backend\market_data\provider\interface.py                 16      4    75%   19, 24, 33, 43
-backend\market_data\provider\manager.py                   37      0   100%
-backend\market_data\provider\registry.py                  15      1    93%   26
-backend\market_data\service\access.py                     39      3    92%   74-75, 78
-------------------------------------------------------------------------------------
-TOTAL                                                   1335    140    90%
+Name                                                             Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------------
+backend\application\di\container.py                                 61     41    33%   23-26, 36-38, 42-44, 48, 51-102
+backend\application\di\exceptions.py                                14      6    57%   10-11, 16-17, 22-23
+backend\application\repository\base.py                              18      7    61%   16, 20, 24, 28, 32, 36, 40
+backend\application\repository\sqlalchemy.py                        41     25    39%   20-21, 24, 27-28, 31-52, 60-61, 66-67, 70, 73
+backend\application\uow\base.py                                     13      5    62%   13, 16, 20, 24, 28
+backend\application\uow\sqlalchemy.py                               47     30    36%   24-26, 29-30, 33-44, 47-54, 57-61, 64-70
+backend\candle_storage\__init__.py                                   0      0   100%
+backend\candle_storage\contracts\__init__.py                         0      0   100%
+backend\candle_storage\contracts\engine.py                          17     17     0%   4-38
+backend\candle_storage\contracts\repository.py                      13     13     0%   5-39
+backend\candle_storage\engine\__init__.py                            0      0   100%
+backend\candle_storage\engine\query.py                              18     18     0%   5-37
+backend\candle_storage\engine\storage.py                            40     40     0%   5-82
+backend\candle_storage\exceptions.py                                 7      7     0%   5-17
+backend\candle_storage\infrastructure\__init__.py                    0      0   100%
+backend\candle_storage\infrastructure\repository.py                101    101     0%   5-198
+backend\candle_storage\models\__init__.py                            0      0   100%
+backend\candle_storage\models\dataset.py                            24     24     0%   5-46
+backend\core\__init__.py                                             0      0   100%
+backend\core\config.py                                              11      0   100%
+backend\core\exceptions.py                                          28     12    57%   18-22, 26, 40, 51, 62, 73, 84, 95
+backend\core\logger.py                                              27     14    48%   21-24, 28-30, 37-61
+backend\core\observability.py                                       33     20    39%   19, 32-46, 62, 67, 72, 81-94
+backend\corporate_actions\adjustment\__init__.py                     0      0   100%
+backend\corporate_actions\adjustment\calculators.py                 33     19    42%   8, 17-21, 40-44, 62-66, 86, 89-96
+backend\corporate_actions\adjustment\engine.py                      49     40    18%   14, 21-74, 77-93
+backend\corporate_actions\contracts\__init__.py                      0      0   100%
+backend\corporate_actions\contracts\storage.py                      19      6    68%   9, 12, 15, 19, 22, 26
+backend\corporate_actions\infrastructure\__init__.py                 0      0   100%
+backend\corporate_actions\infrastructure\storage.py                 26      9    65%   10, 13, 16, 20, 24, 27, 30, 34, 37
+backend\corporate_actions\models\__init__.py                         0      0   100%
+backend\corporate_actions\models\action.py                          31      0   100%
+backend\corporate_actions\models\adjustment.py                       6      0   100%
+backend\corporate_actions\models\report.py                           9      0   100%
+backend\corporate_actions\models\versioning.py                      16      0   100%
+backend\corporate_actions\pipeline\__init__.py                       0      0   100%
+backend\corporate_actions\pipeline\orchestrator.py                  64     45    30%   24-26, 29-62, 81-84, 89-93, 96-131
+backend\corporate_actions\validation\__init__.py                     0      0   100%
+backend\corporate_actions\validation\engine.py                      22     16    27%   12, 24-46
+backend\corporate_actions\validation\rules.py                       58     43    26%   12, 17-32, 37-59, 64-71, 76-84
+backend\data_validation\__init__.py                                  0      0   100%
+backend\data_validation\certification\__init__.py                    0      0   100%
+backend\data_validation\certification\pipeline.py                   46     30    35%   29-33, 41-54, 58-85
+backend\data_validation\cleaning\__init__.py                         0      0   100%
+backend\data_validation\cleaning\engine.py                          43     34    21%   14, 17-67
+backend\data_validation\cleaning\rules\__init__.py                   0      0   100%
+backend\data_validation\cleaning\rules\basic.py                     21     14    33%   11-17, 24-31
+backend\data_validation\contracts\__init__.py                        0      0   100%
+backend\data_validation\contracts\rule.py                           20      6    70%   14-17, 25, 34
+backend\data_validation\contracts\storage.py                         6      1    83%   12
+backend\data_validation\detectors\__init__.py                        0      0   100%
+backend\data_validation\detectors\anomalies.py                      37     30    19%   13-63
+backend\data_validation\detectors\gaps.py                           62     52    16%   16-121
+backend\data_validation\infrastructure\storage.py                   35     21    40%   19, 22-27, 30-65
+backend\data_validation\models\__init__.py                           0      0   100%
+backend\data_validation\models\cleaning.py                          10      0   100%
+backend\data_validation\models\report.py                            28      2    93%   21, 44
+backend\data_validation\models\state.py                             10      0   100%
+backend\data_validation\validation\__init__.py                       0      0   100%
+backend\data_validation\validation\engine.py                        33     24    27%   16, 19-57
+backend\data_validation\validation\rules\__init__.py                 0      0   100%
+backend\data_validation\validation\rules\ohlcv.py                   25     19    24%   14-59
+backend\data_validation\validation\rules\structural.py              35     27    23%   14-71
+backend\domain\shared\primitives.py                                 47      6    87%   28, 41, 45, 49, 62, 66
+backend\historical_data\__init__.py                                  0      0   100%
+backend\historical_data\contracts\__init__.py                        0      0   100%
+backend\historical_data\contracts\provider.py                       16      4    75%   20, 33, 37, 41
+backend\historical_data\contracts\storage.py                        17      4    76%   20, 24, 34, 38
+backend\historical_data\engine\__init__.py                           0      0   100%
+backend\historical_data\engine\manager.py                           83     66    20%   21-28, 32-37, 41-45, 49-63, 66, 69-77, 80-130
+backend\historical_data\engine\normalizer.py                        51     37    27%   20-43, 47-50, 58-85
+backend\historical_data\engine\pipeline.py                          35     21    40%   19-20, 27-43, 51, 55, 64-70
+backend\historical_data\exceptions.py                               20      7    65%   9, 17, 25, 34, 42-46, 51
+backend\historical_data\models\__init__.py                           0      0   100%
+backend\historical_data\models\metadata.py                          34      0   100%
+backend\historical_data\models\raw.py                               15      0   100%
+backend\historical_data\orm\__init__.py                              0      0   100%
+backend\historical_data\orm\models.py                               19      0   100%
+backend\historical_data\providers\__init__.py                        0      0   100%
+backend\historical_data\providers\base.py                           21      7    67%   19, 23, 26, 30, 40-48
+backend\historical_data\providers\manager.py                        26     15    42%   19-21, 25-30, 34, 41-50
+backend\historical_data\providers\mock_provider.py                  36     21    42%   18-20, 24, 27, 30, 40-69
+backend\historical_data\service.py                                  18     18     0%   4-52
+backend\historical_data\storage\__init__.py                          0      0   100%
+backend\historical_data\storage\postgres.py                         85     63    26%   28, 31-37, 40-74, 77-110, 119-131, 145-186
+backend\indicator_engine\__init__.py                                 0      0   100%
+backend\indicator_engine\calculators\__init__.py                    13      0   100%
+backend\indicator_engine\calculators\adx.py                         66     58    12%   10, 13-116
+backend\indicator_engine\calculators\atr.py                         33     25    24%   10, 13-70
+backend\indicator_engine\calculators\base.py                        11      5    55%   14-17, 23
+backend\indicator_engine\calculators\bollinger.py                   29     20    31%   10, 20-61
+backend\indicator_engine\calculators\cmf.py                         42     34    19%   9, 19-84
+backend\indicator_engine\calculators\ema.py                         70     58    17%   10, 19-86, 92, 101-163
+backend\indicator_engine\calculators\macd.py                        53     45    15%   11, 14-88
+backend\indicator_engine\calculators\obv.py                         28     20    29%   9, 19-60
+backend\indicator_engine\calculators\rsi.py                         46     38    17%   10, 13-83
+backend\indicator_engine\calculators\sma.py                         42     30    29%   10, 13-44, 50, 53-80
+backend\indicator_engine\calculators\supertrend.py                  67     57    15%   9-10, 14, 24-132
+backend\indicator_engine\calculators\vwap.py                        38     30    21%   9, 19-76
+backend\indicator_engine\contracts\__init__.py                       0      0   100%
+backend\indicator_engine\contracts\calculator.py                    12      2    83%   16, 37
+backend\indicator_engine\contracts\engine.py                        12     12     0%   1-28
+backend\indicator_engine\contracts\repository.py                    13     13     0%   1-32
+backend\indicator_engine\engine\__init__.py                          0      0   100%
+backend\indicator_engine\engine\engine.py                           29     29     0%   1-70
+backend\indicator_engine\engine\pipeline.py                         32     32     0%   1-95
+backend\indicator_engine\engine\query.py                             9      9     0%   1-18
+backend\indicator_engine\engine\validation.py                       22     22     0%   1-33
+backend\indicator_engine\infrastructure\__init__.py                  0      0   100%
+backend\indicator_engine\infrastructure\repository.py               65     65     0%   1-115
+backend\indicator_engine\models\__init__.py                          0      0   100%
+backend\indicator_engine\models\indicator.py                        52      4    92%   53-54, 73-74
+backend\infrastructure\cache\keys.py                                 4      1    75%   12
+backend\infrastructure\cache\manager.py                             22     10    55%   20, 23-25, 28-30, 33-35
+backend\infrastructure\cache\provider.py                             8      3    62%   10, 13, 16
+backend\infrastructure\config\manager.py                            20     10    50%   24-35
+backend\infrastructure\config\settings.py                           12      0   100%
+backend\infrastructure\database\config.py                           19      1    95%   33
+backend\infrastructure\database\exceptions.py                       21     11    48%   11-12, 18-19, 25-27, 35-38
+backend\infrastructure\database\orm\__init__.py                      6      0   100%
+backend\infrastructure\database\orm\base.py                          6      0   100%
+backend\infrastructure\database\orm\candle.py                       64      0   100%
+backend\infrastructure\database\orm\market_structure.py             28      0   100%
+backend\infrastructure\database\orm\mixins.py                       20      3    85%   12, 51-52
+backend\infrastructure\database\orm\models.py                       24      2    92%   34, 36
+backend\infrastructure\database\orm\support_resistance.py           20      0   100%
+backend\infrastructure\database\orm\volume_analysis.py              33      0   100%
+backend\infrastructure\database\session.py                          18      5    72%   26, 53-57
+backend\infrastructure\database\utils\transaction.py                40     30    25%   25-66
+backend\infrastructure\event_bus\bus.py                             34     19    44%   27-30, 37-59, 68-71
+backend\infrastructure\event_bus\exceptions.py                      10      4    60%   10-11, 16-17
+backend\infrastructure\event_bus\models.py                          16      3    81%   11, 29, 33
+backend\infrastructure\event_bus\publisher.py                        6      1    83%   13
+backend\infrastructure\event_bus\subscriber.py                       5      1    80%   15
+backend\infrastructure\health\checks.py                              7      2    71%   12, 19
+backend\infrastructure\health\manager.py                            29     18    38%   20-21, 27-57
+backend\infrastructure\metrics\instruments.py                       50     23    54%   10-11, 16-17, 20, 24, 29-30, 33, 36, 39, 43, 48-49, 52, 56, 60, 65-66, 69-70, 73-74
+backend\infrastructure\metrics\registry.py                          28     16    43%   18-20, 23-25, 28-30, 34-40
+backend\infrastructure\redis\cache.py                               41     27    34%   21-23, 27, 31-39, 43-50, 54-59
+backend\infrastructure\redis\client.py                               6      1    83%   24
+backend\infrastructure\redis\config.py                              10      0   100%
+backend\infrastructure\redis\exceptions.py                          10      4    60%   11-12, 17-18
+backend\infrastructure\resilience\circuit_breaker.py                56     36    36%   30-36, 41-45, 48-51, 54-60, 64-80
+backend\infrastructure\resilience\retry.py                          26     18    31%   23-44
+backend\infrastructure\utils\serialization.py                       47     29    38%   20-21, 30-34, 39-45, 50-54, 59-68
+backend\instrument\__init__.py                                       4      0   100%
+backend\instrument\contracts\__init__.py                             4      0   100%
+backend\instrument\contracts\provider.py                            12      3    75%   16, 20, 24
+backend\instrument\contracts\registry.py                            16      0   100%
+backend\instrument\contracts\search.py                              14      2    86%   21, 25
+backend\instrument\exceptions.py                                    24      7    71%   13, 18, 23, 28, 33, 38, 43
+backend\instrument\models\__init__.py                                3      0   100%
+backend\instrument\models\exchange.py                                7      0   100%
+backend\instrument\models\instrument.py                             54      0   100%
+backend\instrument\providers\__init__.py                             3      0   100%
+backend\instrument\providers\base.py                                18      5    72%   19, 23, 26, 29, 32
+backend\instrument\providers\mock_provider.py                       24     14    42%   15-18, 21-23, 26-32, 36-37
+backend\instrument\registry\__init__.py                              4      0   100%
+backend\instrument\registry\loader.py                               32     21    34%   19-20, 27-58
+backend\instrument\registry\manager.py                              56     36    36%   24-33, 37-38, 42-43, 47-55, 59-73, 78-84, 88
+backend\instrument\registry\refresher.py                            26     16    38%   18-19, 26-47
+backend\instrument\registry\validation.py                           42     31    26%   22, 26, 30-36, 43-77
+backend\instrument\registry\versioning.py                           28      9    68%   21, 24, 31-32, 36, 40, 44-46
+backend\instrument\search\__init__.py                                3      0   100%
+backend\instrument\search\index.py                                  49     37    24%   19-29, 33-40, 46-52, 56-62, 66-81, 88-89
+backend\instrument\search\query.py                                  53     43    19%   17, 21, 30-65, 69-96
+backend\instrument\service.py                                       33     17    48%   20-22, 26-29, 33-35, 39-41, 45-46, 50, 58
+backend\market_calendar\config\__init__.py                           0      0   100%
+backend\market_calendar\config\settings.py                           7      0   100%
+backend\market_calendar\exceptions.py                               18      8    56%   10-11, 16-17, 22-23, 28-29
+backend\market_calendar\models\session.py                           20      0   100%
+backend\market_calendar\provider\interface.py                       14      4    71%   15, 20, 24, 28
+backend\market_calendar\provider\manager.py                         23     12    48%   18, 22-28, 35-40
+backend\market_calendar\provider\registry.py                        13      3    77%   17-18, 21
+backend\market_calendar\provider\static_provider.py                 28     17    39%   14, 18, 22-30, 34-70
+backend\market_calendar\service\time_service.py                     53     38    28%   17-18, 22-32, 36-38, 42-46, 50-69, 73-80
+backend\market_calendar\utils\__init__.py                            0      0   100%
+backend\market_calendar\utils\timezone.py                           32     13    59%   20-24, 29, 34-36, 41-43, 48
+backend\market_data\config\settings.py                               9      0   100%
+backend\market_data\exceptions.py                                   26     12    54%   10-11, 16-17, 22-23, 28-29, 34-35, 40-41
+backend\market_data\models\candle.py                                25      9    64%   27-42
+backend\market_data\models\symbol.py                                 9      1    89%   17
+backend\market_data\models\timeframe.py                             16      2    88%   22-35
+backend\market_data\provider\interface.py                           16      4    75%   19, 24, 33, 43
+backend\market_data\provider\manager.py                             37     26    30%   18, 22-38, 49-69
+backend\market_data\provider\registry.py                            15      4    73%   18-19, 23, 26
+backend\market_data\service\access.py                               39     25    36%   21-22, 38-56, 69-89
+backend\market_structure_engine\__init__.py                          0      0   100%
+backend\market_structure_engine\contracts\__init__.py                4      0   100%
+backend\market_structure_engine\contracts\analyzer.py               15      2    87%   16, 30
+backend\market_structure_engine\contracts\engine.py                 10      1    90%   18
+backend\market_structure_engine\contracts\repository.py             19      4    79%   11, 15, 23, 30
+backend\market_structure_engine\engine\__init__.py                   4      0   100%
+backend\market_structure_engine\engine\analyzer.py                  78     68    13%   12-72, 75-114
+backend\market_structure_engine\engine\engine.py                    29     17    41%   19-22, 25-54
+backend\market_structure_engine\engine\event_detector.py            53     42    21%   21-95
+backend\market_structure_engine\infrastructure\__init__.py           2      0   100%
+backend\market_structure_engine\infrastructure\repository.py        54     33    39%   17, 20-35, 38-55, 58-68, 71-81, 84-89, 96-103
+backend\market_structure_engine\models\__init__.py                   4      0   100%
+backend\market_structure_engine\models\config.py                     8      0   100%
+backend\market_structure_engine\models\events.py                    19      0   100%
+backend\market_structure_engine\models\structure.py                 13      0   100%
+backend\support_resistance_engine\__init__.py                        7      0   100%
+backend\support_resistance_engine\contracts\__init__.py              3      0   100%
+backend\support_resistance_engine\contracts\engine.py               25      5    80%   11, 16, 21, 34, 39
+backend\support_resistance_engine\contracts\repository.py           23      5    78%   11, 15, 27, 38, 50
+backend\support_resistance_engine\engine\__init__.py                 5      0   100%
+backend\support_resistance_engine\engine\engine.py                  22     14    36%   20-23, 26-55
+backend\support_resistance_engine\engine\lifecycle.py               71     63    11%   8-55, 62-75, 78-112
+backend\support_resistance_engine\engine\swing.py                   49     42    14%   8-11, 14-85
+backend\support_resistance_engine\engine\zone_generator.py          29     20    31%   13-70
+backend\support_resistance_engine\infrastructure\__init__.py         2      0   100%
+backend\support_resistance_engine\infrastructure\repository.py      47     29    38%   19, 22-43, 46, 49-59, 75-82, 92-104, 114-118
+backend\support_resistance_engine\models\__init__.py                 2      0   100%
+backend\support_resistance_engine\models\zone.py                    45      2    96%   56-57
+backend\volume_analysis_engine\__init__.py                           0      0   100%
+backend\volume_analysis_engine\contracts\__init__.py                 4      0   100%
+backend\volume_analysis_engine\contracts\analyzer.py                21      4    81%   10, 15, 21, 32
+backend\volume_analysis_engine\contracts\engine.py                   9      1    89%   10
+backend\volume_analysis_engine\contracts\repository.py              15      3    80%   10, 14, 18
+backend\volume_analysis_engine\engine\__init__.py                    4      0   100%
+backend\volume_analysis_engine\engine\engine.py                     41     29    29%   19-22, 25-74
+backend\volume_analysis_engine\engine\event_detector.py             71     59    17%   19-135, 138-144, 147
+backend\volume_analysis_engine\engine\rvol.py                       35     23    34%   16-46, 58-79
+backend\volume_analysis_engine\infrastructure\__init__.py            2      0   100%
+backend\volume_analysis_engine\infrastructure\repository.py         50     32    36%   15, 18-54, 57-67, 70-80, 83-88, 101-107
+backend\volume_analysis_engine\models\__init__.py                    3      0   100%
+backend\volume_analysis_engine\models\config.py                     14      0   100%
+backend\volume_analysis_engine\models\volume.py                     45      0   100%
+----------------------------------------------------------------------------------------------
+TOTAL                                                             5175   2890    44%
 
-
-============================= 65 passed in 4.08s ==============================
+=========================== short test summary info ===========================
+ERROR tests/integration/candle_storage/test_repository.py
+ERROR tests/integration/historical_data/test_storage.py
+ERROR tests/integration/indicator_engine/test_pipeline.py
+ERROR tests/integration/indicator_engine/test_repository.py
+ERROR tests/unit/candle_storage/test_engine.py
+ERROR tests/unit/historical_data/test_engine.py
+ERROR tests/unit/historical_data/test_service.py
+ERROR tests/unit/indicator_engine/test_calculators.py
+ERROR tests/unit/indicator_engine/test_engine.py
+ERROR tests/unit/volume_analysis_engine/test_engine.py
+ERROR tests/unit/volume_analysis_engine/test_event_detector.py
+!!!!!!!!!!!!!!!!!! Interrupted: 11 errors during collection !!!!!!!!!!!!!!!!!!!
+============================= 11 errors in 9.53s ==============================
 C:\Users\Vinayaka K\AppData\Roaming\Python\Python38\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
 The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
 
   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
 
 ========================================
-EXIT_CODE: 0
+EXIT_CODE: 2

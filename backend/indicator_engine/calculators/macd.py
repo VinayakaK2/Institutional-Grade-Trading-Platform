@@ -36,8 +36,8 @@ class MACDCalculator(BaseCalculator):
                 emas.append(current_ema)
             return emas
 
-        fast_emas = calc_emas(prices, fast_period)
-        slow_emas = calc_emas(prices, slow_period)
+        fast_emas = kwargs.get("precalculated_fast_emas") or calc_emas(prices, fast_period)
+        slow_emas = kwargs.get("precalculated_slow_emas") or calc_emas(prices, slow_period)
         
         # Compute MACD Line (Fast EMA - Slow EMA)
         macd_line: List[Optional[float]] = []

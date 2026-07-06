@@ -17,6 +17,7 @@ class IndicatorType(str, Enum):
     DI_MINUS = "di_minus"
     ATR = "atr"
     VOL_SMA = "vol_sma"
+    VOL_EMA = "vol_ema"
     VWAP = "vwap"
     BOLLINGER_BANDS = "bollinger_bands"
     SUPERTREND = "supertrend"
