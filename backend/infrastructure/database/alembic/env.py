@@ -12,8 +12,12 @@ from alembic import context
 
 from backend.infrastructure.database.config import db_settings
 from backend.infrastructure.database.orm.base import Base
-# IMPORTANT: Future domain models must be imported here so Alembic can discover them.
-# from backend.infrastructure.database.orm.models import *
+from backend.infrastructure.database.orm.universe import UniverseSnapshotModel
+from backend.infrastructure.database.orm.liquidity import LiquidityUniverseModel
+from backend.infrastructure.database.orm.data_quality import CertifiedUniverseModel
+from backend.infrastructure.database.orm.classification import ClassifiedUniverseModel
+from backend.infrastructure.database.orm.optimization import OptimizedUniverseModel
+from backend.infrastructure.database.orm.certification import CertificationReportModel
 
 config = context.config
 
