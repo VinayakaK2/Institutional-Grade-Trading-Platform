@@ -18,6 +18,7 @@ from backend.infrastructure.database.orm.data_quality import CertifiedUniverseMo
 from backend.infrastructure.database.orm.classification import ClassifiedUniverseModel
 from backend.infrastructure.database.orm.optimization import OptimizedUniverseModel
 from backend.infrastructure.database.orm.certification import CertificationReportModel
+from backend.infrastructure.database.orm.watchlist import WatchlistSnapshotModel
 
 config = context.config
 
