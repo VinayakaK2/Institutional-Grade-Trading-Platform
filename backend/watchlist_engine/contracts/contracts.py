@@ -10,7 +10,7 @@ These contracts define the architectural boundaries of the Watchlist Engine.
 No business logic or implementation details exist here.
 """
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 from backend.watchlist_engine.models.models import (
     WatchlistCandidate,
@@ -136,7 +136,8 @@ class IWatchlistEngine(ABC):
         source_universe_snapshot_id: Optional[str] = None,
         source_universe_version: Optional[int] = None,
         config_hash: str = "unknown",
-        candidate_selection_version: Optional[str] = None
+        candidate_selection_version: Optional[str] = None,
+        metadata_overrides: Optional[Dict[str, Any]] = None
     ) -> WatchlistResult:
         """
         Executes a full watchlist generation run.

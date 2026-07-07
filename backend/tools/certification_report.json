@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "business_metadata": {
+    "pipeline_version": "1.0.0",
+    "config_hash": "certified_config",
+    "business_fingerprint_version": 1
+  },
+  "execution_metadata": {
+    "execution_timestamp": "2026-07-07T12:49:08.673731Z",
+    "python_version": "3.8.10",
+    "execution_time_ms": 74.58806037902832,
+    "memory_usage_mb": 60.71484375,
+    "environment_info": {
+      "os": "Windows",
+      "release": "10",
+      "machine": "AMD64"
+    }
+  },
+  "stage_results": [
+    {
+      "stage_name": "FunctionalVerificationStage",
+      "passed": true,
+      "execution_time_ms": 12.920856475830078,
+      "errors": [],
+      "warnings": [
+        "Stale market data check requires mocked freshness stage to drop candidates."
+      ],
+      "details": {}
+    },
+    {
+      "stage_name": "RegressionVerificationStage",
+      "passed": true,
+      "execution_time_ms": 14.304876327514648,
+      "errors": [],
+      "warnings": [],
+      "details": {}
+    },
+    {
+      "stage_name": "DeterminismVerificationStage",
+      "passed": true,
+      "execution_time_ms": 16.559600830078125,
+      "errors": [],
+      "warnings": [],
+      "details": {}
+    },
+    {
+      "stage_name": "StressVerificationStage",
+      "passed": true,
+      "execution_time_ms": 24.83224868774414,
+      "errors": [],
+      "warnings": [],
+      "details": {}
+    }
+  ]
+}

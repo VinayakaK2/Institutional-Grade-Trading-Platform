@@ -5,7 +5,6 @@ Freshness & Availability Engine Orchestrator
 Orchestrates the Freshness pipeline using the reusable WatchlistEngine foundation.
 """
 import uuid
-from typing import Dict, Any
 
 from backend.watchlist_engine.engine.engine import WatchlistEngine
 from backend.watchlist_engine.models.models import WatchlistSnapshot
@@ -53,7 +52,6 @@ class FreshnessEngine:
         Returns:
             A FreshWatchlistSnapshot wrapping the successfully validated candidates.
         """
-        import uuid
         run_id = str(uuid.uuid4())
         
         # Run the inner reusable engine

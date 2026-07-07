@@ -79,7 +79,8 @@ class WatchlistOptimizationEngine(IWatchlistEngine):
             source_universe_snapshot_id=source_universe_snapshot_id,
             source_universe_version=source_universe_version,
             config_hash=config_hash,
-            candidate_selection_version=candidate_selection_version
+            candidate_selection_version=candidate_selection_version,
+            metadata_overrides={"optimization_fingerprint": fingerprint}
         )
         
         return result

@@ -42,7 +42,7 @@ This engine is an orchestrator ONLY. It must NEVER contain:
 """
 import uuid
 from datetime import datetime, timezone
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 from backend.core.logger import get_logger
 from backend.watchlist_engine.contracts.contracts import (
@@ -103,7 +103,8 @@ class WatchlistEngine(IWatchlistEngine):
         source_universe_snapshot_id: Optional[str] = None,
         source_universe_version: Optional[int] = None,
         config_hash: str = "unknown",
-        candidate_selection_version: Optional[str] = None
+        candidate_selection_version: Optional[str] = None,
+        metadata_overrides: Optional[Dict[str, Any]] = None
     ) -> WatchlistResult:
         """
         Execute a full watchlist generation run and return an immutable snapshot.
@@ -151,13 +152,17 @@ class WatchlistEngine(IWatchlistEngine):
 
         # ── Step 2: Build execution context ───────────────────────────────────
         # The context is mutable during the pipeline so stages can accumulate results.
+        metadata = {"source": "WatchlistEngine", "pipeline_version": self._pipeline_version}
+        if metadata_overrides:
+            metadata.update(metadata_overrides)
+
         context = WatchlistExecutionContext(
             run_id=run_id,
             snapshot_id=snapshot_id,
             started_at=started_at,
             candidates=list(candidates),  # Shallow copy — engine does not mutate caller's list.
             shared_state={},
-            metadata={"source": "WatchlistEngine", "pipeline_version": self._pipeline_version},
+            metadata=metadata,
             stage_results=[],
         )
 
