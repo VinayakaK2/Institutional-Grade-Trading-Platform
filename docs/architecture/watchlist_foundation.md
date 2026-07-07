@@ -322,5 +322,39 @@ PlatformException (Phase 0)
 
 ---
 
+## 12. Phase 6.4 - Watchlist Management Engine
+
+### Business Fingerprint Contract
+
+The `BusinessFingerprint` provides deterministic equality detection between snapshots, ensuring that identical watchlists are not redundantly promoted. 
+
+**Fields Included:**
+- `dataset_version` (String)
+- `config_hash` (String)
+- A sorted list of `WatchlistSymbol.symbol.symbol` values from all valid candidates.
+
+**Fields Excluded:**
+- Audit metadata (IDs, timestamps, execution `run_id`).
+- Version numbers (`managed_version`, `parent_candidate_watchlist_version`).
+
+**Fingerprint Algorithm:**
+- The list of candidate symbol strings is sorted alphabetically to ensure deterministic order.
+- A single string is constructed in the format: `{dataset_version}|{config_hash}|{sorted_symbols_joined_by_comma}`.
+- This string is hashed using SHA-256 and returned as a hex digest.
+
+**Version Compatibility Rules:**
+- Future changes to the fields included in the Business Fingerprint, or changes to the fingerprint algorithm itself, represent a breaking change to equality detection.
+- Any change to the fingerprint contract **MUST** require a pipeline version increment to ensure traceability.
+
+### Snapshot Diff Complexity
+
+The `SnapshotDiffEngine` dynamically generates differences between two immutable `ManagedWatchlistSnapshot` instances.
+
+**Complexity & Determinism:**
+- The comparison is strictly deterministic, based exclusively on immutable Symbol IDs (`WatchlistSymbol.symbol.symbol`).
+- The engine computes added, removed, and unchanged symbols in memory `O(N)` time complexity using set operations on the candidate symbols.
+- No historical diffs are persisted in the database; diffs are derived data generated on-the-fly when requested by the `ManagedWatchlistQueryService`.
+- Because diffs rely purely on immutable data structures and deterministic operations, future query optimizations (e.g., caching the diff output) can be safely implemented without altering business behavior.
+
 *This document must be updated whenever the Watchlist Foundation contracts change.*
 *All future Watchlist phases must reference this document before implementation.*
