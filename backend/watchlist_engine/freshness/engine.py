@@ -5,7 +5,6 @@ Freshness & Availability Engine Orchestrator
 Orchestrates the Freshness pipeline using the reusable WatchlistEngine foundation.
 """
 import uuid
-import time
 from typing import Dict, Any
 
 from backend.watchlist_engine.engine.engine import WatchlistEngine
@@ -54,15 +53,20 @@ class FreshnessEngine:
         Returns:
             A FreshWatchlistSnapshot wrapping the successfully validated candidates.
         """
-        # Pass the dataset_version via shared_state so stages can access it
-        shared_state: Dict[str, Any] = {
-            "dataset_version": self._dataset_version
-        }
+        import uuid
+        run_id = str(uuid.uuid4())
         
         # Run the inner reusable engine
         # The engine will create its own generic WatchlistSnapshot and persist it 
         # to the generic WatchlistRepository.
-        result = await self._engine.generate_watchlist(candidate_snapshot.candidates, shared_state)
+        result = await self._engine.generate_watchlist(
+            run_id=run_id,
+            candidates=candidate_snapshot.candidates,
+            source_universe_snapshot_id=candidate_snapshot.source_universe_snapshot_id,
+            source_universe_version=candidate_snapshot.source_universe_version,
+            candidate_selection_version=candidate_snapshot.candidate_selection_version,
+            config_hash=f"freshness_{self._dataset_version}"
+        )
         
         if not result.snapshot:
             raise RuntimeError("WatchlistEngine failed to generate a snapshot.")

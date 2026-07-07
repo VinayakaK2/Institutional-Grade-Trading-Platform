@@ -1,9 +1,8 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 from enum import Enum
 
-from backend.market_data.models.symbol import SymbolReference
 from backend.watchlist_engine.models.models import WatchlistSymbol
 from backend.watchlist_engine.freshness.models import FreshWatchlistSnapshot
 

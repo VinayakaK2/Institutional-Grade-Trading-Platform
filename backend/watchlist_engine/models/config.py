@@ -76,6 +76,29 @@ class WatchlistSnapshotSettings(AppSettings):
     )
 
 
+class WatchlistOptimizationSettings(AppSettings):
+    """Controls the Phase 6.5 optimization features."""
+    
+    enable_incremental_processing: bool = Field(
+        default=True,
+        description="Enable bypassing processing for unchanged candidates."
+    )
+    
+    enable_parallel_execution: bool = Field(
+        default=True,
+        description="Enable processing pipeline batches in parallel."
+    )
+    
+    max_parallel_workers: int = Field(
+        default=4,
+        description="Maximum number of parallel workers for optimization pipeline."
+    )
+    
+    batch_size: int = Field(
+        default=100,
+        description="Number of candidates to process in each parallel batch."
+    )
+
 class WatchlistSettings(AppSettings):
     """
     Top-level configuration for the WatchlistEngine.
@@ -95,3 +118,6 @@ class WatchlistSettings(AppSettings):
 
     # Snapshot configuration (pipeline versioning).
     snapshot: WatchlistSnapshotSettings = Field(default_factory=WatchlistSnapshotSettings)
+
+    # Optimization configuration (Phase 6.5 features).
+    optimization: WatchlistOptimizationSettings = Field(default_factory=WatchlistOptimizationSettings)

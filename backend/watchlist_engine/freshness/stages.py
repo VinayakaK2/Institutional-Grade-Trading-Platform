@@ -4,7 +4,6 @@ Freshness & Availability Pipeline Stages
 
 Pipeline stages for the Freshness Engine.
 """
-from typing import List
 from datetime import datetime, timezone
 
 from backend.watchlist_engine.contracts.contracts import IWatchlistStage
@@ -45,7 +44,6 @@ class FreshnessValidationStage(IWatchlistStage):
         
         for candidate in context.candidates:
             symbol = candidate.watchlist_symbol.symbol
-            exchange_code = candidate.watchlist_symbol.market_segment
             
             try:
                 # Get the single latest candle

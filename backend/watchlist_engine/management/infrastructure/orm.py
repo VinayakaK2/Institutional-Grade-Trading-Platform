@@ -1,7 +1,7 @@
 import datetime
 from typing import Dict, Any
 
-from sqlalchemy import Integer, String, DateTime, JSON, ForeignKey, Column
+from sqlalchemy import Integer, String, DateTime, JSON, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
 from backend.infrastructure.database.orm.base import Base

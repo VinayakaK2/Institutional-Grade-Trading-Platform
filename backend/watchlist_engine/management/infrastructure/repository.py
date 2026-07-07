@@ -1,18 +1,16 @@
 from typing import List, Optional
-import uuid
 
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
 
 from backend.infrastructure.database.orm.watchlist import WatchlistSnapshotModel
 from backend.watchlist_engine.freshness.infrastructure.orm import FreshWatchlistSnapshotModel
 from backend.watchlist_engine.management.infrastructure.orm import ManagedWatchlistSnapshotModel, WatchlistAuditRecordModel
+from backend.infrastructure.database.exceptions import InfrastructureException, DatabaseIntegrityException
 from backend.watchlist_engine.management.contracts import IManagedWatchlistRepository
-from backend.watchlist_engine.management.models import ManagedWatchlistSnapshot, WatchlistAuditRecord
+from backend.watchlist_engine.management.models import ManagedWatchlistSnapshot, WatchlistAuditRecord, WatchlistStatus
 from backend.watchlist_engine.freshness.models import FreshWatchlistSnapshot
-from backend.watchlist_engine.models.models import WatchlistSnapshot
-from backend.infrastructure.database.exceptions import DatabaseIntegrityException
+from backend.watchlist_engine.models.models import WatchlistSnapshot, WatchlistValidationStatus, WatchlistCandidate
 
 class ManagedWatchlistRepository(IManagedWatchlistRepository):
     """
@@ -114,7 +112,7 @@ class ManagedWatchlistRepository(IManagedWatchlistRepository):
                     domain_snapshots.append(await self._to_domain(session, orm_snapshot))
                 return domain_snapshots
             except Exception as e:
-                raise DatabaseException(f"Failed to load snapshot history: {str(e)}") from e
+                raise InfrastructureException(f"Failed to load snapshot history: {str(e)}") from e
 
     async def get_audit_history(self, managed_snapshot_id: str) -> List[WatchlistAuditRecord]:
         async with self._session_factory() as session:
@@ -137,7 +135,7 @@ class ManagedWatchlistRepository(IManagedWatchlistRepository):
                     for a in orm_audits
                 ]
             except Exception as e:
-                raise DatabaseException(f"Failed to load audit history: {str(e)}") from e
+                raise InfrastructureException(f"Failed to load audit history: {str(e)}") from e
 
     async def _to_domain(self, session: AsyncSession, orm_managed: ManagedWatchlistSnapshotModel) -> ManagedWatchlistSnapshot:
         # Load the inner fresh snapshot
@@ -148,7 +146,7 @@ class ManagedWatchlistRepository(IManagedWatchlistRepository):
         orm_fresh = result.scalar_one_or_none()
         
         if not orm_fresh:
-            raise DatabaseException(f"Data corruption: missing fresh snapshot {orm_managed.fresh_snapshot_id}")
+            raise InfrastructureException(f"Data corruption: missing fresh snapshot {orm_managed.fresh_snapshot_id}")
             
         # Load the innermost watchlist snapshot
         stmt2 = select(WatchlistSnapshotModel).where(
@@ -158,19 +156,19 @@ class ManagedWatchlistRepository(IManagedWatchlistRepository):
         orm_base = result2.scalar_one_or_none()
         
         if not orm_base:
-            raise DatabaseException(f"Data corruption: missing base snapshot {orm_fresh.watchlist_snapshot_id}")
+            raise InfrastructureException(f"Data corruption: missing base snapshot {orm_fresh.watchlist_snapshot_id}")
             
         base_snapshot = WatchlistSnapshot(
             snapshot_id=orm_base.snapshot_id,
             version=orm_base.version,
             created_at=orm_base.created_at,
             symbol_count=orm_base.symbol_count,
-            candidates=orm_base.candidates,
+            candidates=[WatchlistCandidate.model_validate(c) for c in orm_base.candidates],
             metadata=orm_base.metadata_col,
             pipeline_version=orm_base.pipeline_version,
             candidate_selection_version=orm_base.candidate_selection_version,
             config_hash=orm_base.config_hash,
-            validation_status=orm_base.validation_status,
+            validation_status=WatchlistValidationStatus(orm_base.validation_status),
             source_pipeline_version=orm_base.source_pipeline_version,
             source_universe_snapshot_id=orm_base.source_universe_snapshot_id,
             source_universe_version=orm_base.source_universe_version
@@ -196,5 +194,5 @@ class ManagedWatchlistRepository(IManagedWatchlistRepository):
             config_hash=orm_managed.config_hash,
             business_fingerprint=orm_managed.business_fingerprint,
             created_at=orm_managed.created_at,
-            status=orm_managed.status
+            status=WatchlistStatus(orm_managed.status)
         )

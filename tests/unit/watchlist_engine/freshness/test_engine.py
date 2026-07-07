@@ -76,10 +76,11 @@ async def test_freshness_engine_generates_fresh_snapshot(watchlist_snapshot, can
     assert result.parent_candidate_watchlist_version == "v1.0.0"
     assert result.watchlist_snapshot == inner_snapshot
     
-    mock_watchlist_engine.generate_watchlist.assert_called_once_with(
-        watchlist_snapshot.candidates,
-        {"dataset_version": "v2.0.0"}
-    )
+    mock_watchlist_engine.generate_watchlist.assert_called_once()
+    kwargs = mock_watchlist_engine.generate_watchlist.call_args[1]
+    assert kwargs["candidates"] == watchlist_snapshot.candidates
+    assert kwargs["config_hash"] == "freshness_v2.0.0"
+    assert kwargs["candidate_selection_version"] == "v1.0.0"
     mock_repository.save_fresh_snapshot.assert_called_once_with(result)
 
 @pytest.mark.asyncio

@@ -261,7 +261,7 @@ class PostgreSQLWatchlistRepository(IWatchlistRepository):
                     .limit(limit)
                 )
                 models = result.scalars().all()
-                return [self._map_to_domain(m) for m in models]
+                return [PostgreSQLWatchlistRepository._map_to_domain(m) for m in models]
         except Exception as exc:
             logger.error(f"Failed to list WatchlistSnapshot history: {exc}", exc_info=True)
             raise WatchlistRepositoryError(
@@ -269,7 +269,8 @@ class PostgreSQLWatchlistRepository(IWatchlistRepository):
                 details={"error": str(exc)},
             ) from exc
 
-    def _map_to_domain(self, model: WatchlistSnapshotModel) -> WatchlistSnapshot:
+    @staticmethod
+    def _map_to_domain(model: WatchlistSnapshotModel) -> WatchlistSnapshot:
         """Maps a WatchlistSnapshotModel ORM row to the immutable WatchlistSnapshot domain model."""
         candidates = [
             WatchlistCandidate(**cast(Dict[str, Any], cand_dict))
