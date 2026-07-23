@@ -315,3 +315,25 @@ Correctness is more important than speed.
 Evidence is more valuable than assumptions.
 
 Every completed task should leave the codebase more reliable than before.
+
+# Remember
+
+One Small Recommendation (Future)
+
+This is not a blocker.
+
+Later (Phase 13.4–13.7), you may consider making the lifecycle transitions data-driven rather than hard-coded.
+
+For example:
+
+ALLOWED_TRANSITIONS = {
+    CREATED: {...},
+    ACCEPTED: {...},
+    PENDING: {...},
+}
+
+instead of embedding logic in methods.
+
+That makes future order states easier to add (e.g., PARTIALLY_FILLED, FILLED, EXPIRED_BY_TIME, etc.).
+
+Again, not required for Phase 13.2, just something to consider as the execution engine evolves.
